@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 
 const GET_ALL_USERS= async(req, res)=>{
     try{
-        const users=await UserModel.find().sort({"name": 1 }).select(`name`);
+        const users=await UserModel.find().sort({"name": 1 }).select(`name photo`);
         res.status(200).json({users: users});
     } catch(err){
       console.log(err);

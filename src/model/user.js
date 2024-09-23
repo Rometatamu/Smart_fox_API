@@ -11,6 +11,10 @@ const userSchema=mongoose.Schema({
       },},
     password: {type: String, required: true},
     id: {type: String, required: true},
-    photo: {type: String, required:false}
-});
+    photo: {type: String, default:"https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg",
+      set: (value) => {
+        return value === "" ? undefined : value;
+      },
+    },
+  });
 export default mongoose.model("User", userSchema);
