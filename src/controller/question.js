@@ -4,7 +4,7 @@ import AnswerModel from "../model/answer.js";
 
 const GET_ALL_QUESTIONS= async (req, res)=>{
     try{
-        const questions=await QuestionModel.find();
+        const questions=await QuestionModel.find().sort({"date": -1});
         res.status(200).json({questions: questions});
     } catch(err){
       console.log(err);
@@ -19,6 +19,19 @@ const GET_QUESTIONS_BY_USER= async (req, res)=>{
       console.log(err);
       return res.status(500).json({mesage:`Server error`});
     }
+};
+const GET_QUESTION_BY_ID = async (req, res)=>{
+    try{
+       const id=req.params.id;
+       const question=await QuestionModel.findOne({id:id});
+        if(!question){
+         return res.status(404).json({message: `The question does not exist`});
+        }
+        return res.status(200).json({response: `status`, question: question,})
+     } catch(err){
+          console.log(err);
+          return res.status(500).json({massage: `Server error`});
+     }
 };
 const POST_QUESTION = async (req, res)=>{
     try{
@@ -67,8 +80,8 @@ const GET_FILTERED_QUESTIONS= async function(req, res){
         } else if (answered === 'false') {
             filter.answered = false;
         }
-        const sortedquestions=await QuestionModel.find(filter).sort({"date": -1});
-        res.status(200).json({sortedquestions: sortedquestions});
+        const questions=await QuestionModel.find(filter).sort({"date": -1});
+        res.status(200).json({questions: questions});
     } catch(err){
       console.log(err);
       return res.status(500).json({mesage:`Server error`});
@@ -117,4 +130,4 @@ const SUBMIT_ANSWER = async (req, res) => {
 
 
     
-export {GET_ALL_QUESTIONS, GET_QUESTIONS_BY_USER, POST_QUESTION, DELETE_QUESTION_BY_ID, GET_FILTERED_QUESTIONS, SUBMIT_ANSWER};
+export {GET_ALL_QUESTIONS, GET_QUESTIONS_BY_USER, POST_QUESTION, DELETE_QUESTION_BY_ID, GET_FILTERED_QUESTIONS, SUBMIT_ANSWER, GET_QUESTION_BY_ID };
