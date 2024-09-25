@@ -86,5 +86,17 @@ const GET_ANSWERS_BY_USER= async (req, res)=>{
       return res.status(500).json({mesage:`Server error`});
     }
 };
+const GET_ANSWER_BY_QUESTION = async (req, res) => {
+  try {
+    const answer = await AnswerModel.find({ questionId: req.params.questionId });
+    
+    return res.status(200).json({ answer: answer });
+    
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
 
-export {GET_ALL_ANSWERS,  DELETE_ANSWER_BY_ID, GET_FILTERED_ANSWERS_BY_LIKES, PUT_ANSWER_REACTIONS, GET_ANSWERS_BY_USER};
+
+export {GET_ALL_ANSWERS,  DELETE_ANSWER_BY_ID, GET_FILTERED_ANSWERS_BY_LIKES, PUT_ANSWER_REACTIONS, GET_ANSWERS_BY_USER, GET_ANSWER_BY_QUESTION};

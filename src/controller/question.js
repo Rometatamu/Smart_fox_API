@@ -8,7 +8,7 @@ const GET_ALL_QUESTIONS= async (req, res)=>{
         res.status(200).json({questions: questions});
     } catch(err){
       console.log(err);
-      return res.status(500).json({mesage:`Server error`});
+      return res.status(500).json({message:`Server error`});
     }
 };
 const GET_QUESTIONS_BY_USER= async (req, res)=>{
@@ -17,7 +17,7 @@ const GET_QUESTIONS_BY_USER= async (req, res)=>{
         res.status(200).json({questions: questions});
     } catch(err){
       console.log(err);
-      return res.status(500).json({mesage:`Server error`});
+      return res.status(500).json({message:`Server error`});
     }
 };
 const GET_QUESTION_BY_ID = async (req, res)=>{
@@ -30,7 +30,7 @@ const GET_QUESTION_BY_ID = async (req, res)=>{
         return res.status(200).json({response: `status`, question: question,})
      } catch(err){
           console.log(err);
-          return res.status(500).json({massage: `Server error`});
+          return res.status(500).json({message: `Server error`});
      }
 };
 const POST_QUESTION = async (req, res)=>{
@@ -43,7 +43,7 @@ const POST_QUESTION = async (req, res)=>{
         id: uuidv4(),
     });
     await question.save();
-    return res.status(201).json({message: "A question was provided successfully.", guestion: question});
+    return res.status(201).json({message: "A question was provided successfully.", question: question});
    } catch (err){
     console.log(err);
     return res.status(500).json({message: "Server error"});
@@ -70,7 +70,7 @@ const DELETE_QUESTION_BY_ID = async (req, res) => {
     }
 };
 
-const GET_FILTERED_QUESTIONS= async function(req, res){
+const GET_FILTERED_QUESTIONS= async (req, res)=>{
     try{
         const { answered } = req.query;
         const filter = {};
@@ -84,7 +84,7 @@ const GET_FILTERED_QUESTIONS= async function(req, res){
         res.status(200).json({questions: questions});
     } catch(err){
       console.log(err);
-      return res.status(500).json({mesage:`Server error`});
+      return res.status(500).json({message:`Server error`});
     }
 };
 const SUBMIT_ANSWER = async (req, res) => {

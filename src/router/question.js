@@ -15,10 +15,10 @@ const router=express.Router()
 
 
 router.get(`/questions`, GET_ALL_QUESTIONS);
-router.get(`/questions/:id`, GET_QUESTION_BY_ID);
+router.get(`/question/:id`, GET_QUESTION_BY_ID);
 router.get(`/questions/user/:userId`, auth, GET_QUESTIONS_BY_USER);
 router.post(`/questions`, auth, POST_QUESTION);
-router.delete('/questions/:id', auth, DELETE_QUESTION_BY_ID);
+router.delete('/question/:id', auth, DELETE_QUESTION_BY_ID);
 router.get(`/questions/filtered`, GET_FILTERED_QUESTIONS);
 router.post(`/questions/:id/answers`, auth, SUBMIT_ANSWER)
 
