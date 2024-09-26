@@ -37,17 +37,17 @@ const DELETE_ANSWER_BY_ID = async (req, res)=>{
           return res.status(500).json({message: `Server error`});
       }
 };
-const GET_FILTERED_ANSWERS_BY_LIKES = async function(req, res) {
+const GET_FILTERED_ANSWERS_BY_LIKES = async (req, res)=> {
     try {
         const { filterBy } = req.query;
         const filter = {};
 
         if (filterBy === 'likes') {
-            filter.gained_likes_number = { $gte: 0 };  
+            filter.gained_likes_number = { $gt: 0 };  
         }
-        const sortedAnswers = await AnswerModel.find(filter).sort({"gained_likes_number": -1});
+        const answers = await AnswerModel.find(filter).sort({"gained_likes_number": -1});
 
-        res.status(200).json({ sortedAnswers });
+        res.status(200).json({ answers });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: `Server error` });
