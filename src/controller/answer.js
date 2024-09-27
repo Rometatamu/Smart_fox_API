@@ -97,6 +97,19 @@ const GET_ANSWER_BY_QUESTION = async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 };
+const GET_ANSWER_BY_ID = async (req, res)=>{
+  try{
+     const id=req.params.id;
+     const answer=await AnswerModel.findOne({id:id});
+      if(!answer){
+       return res.status(404).json({message: `The answer does not exist`});
+      }
+      return res.status(200).json({response: `status`, answer: answer,})
+   } catch(err){
+        console.log(err);
+        return res.status(500).json({message: `Server error`});
+   }
+};
 
 
-export {GET_ALL_ANSWERS,  DELETE_ANSWER_BY_ID, GET_FILTERED_ANSWERS_BY_LIKES, PUT_ANSWER_REACTIONS, GET_ANSWERS_BY_USER, GET_ANSWER_BY_QUESTION};
+export {GET_ALL_ANSWERS,  DELETE_ANSWER_BY_ID, GET_FILTERED_ANSWERS_BY_LIKES, PUT_ANSWER_REACTIONS, GET_ANSWERS_BY_USER, GET_ANSWER_BY_QUESTION, GET_ANSWER_BY_ID};
