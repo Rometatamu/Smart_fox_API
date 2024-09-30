@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 import UserModel from "../model/user.js";
 import jwt from "jsonwebtoken";
 
-
 const GET_ALL_USERS= async(req, res)=>{
     try{
         const users=await UserModel.find().sort({"name": 1 }).select(`name photo`);

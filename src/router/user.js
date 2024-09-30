@@ -1,13 +1,10 @@
 import express from "express";
-
 import {
     GET_ALL_USERS, 
     SIGN_UP, 
     LOGIN, 
     VALIDATE_LOGIN,
 } from "../controller/user.js";
-
-import {auth} from "../middlewares/auth.js"
 
 const router=express.Router()
 

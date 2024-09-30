@@ -1,5 +1,4 @@
 import express from "express";
-
 import {
     GET_ALL_ANSWERS,
     PUT_ANSWER_REACTIONS,
@@ -9,10 +8,9 @@ import {
     GET_ANSWER_BY_QUESTION,
     GET_ANSWER_BY_ID,
 } from "../controller/answer.js";
-
 import {auth} from "../middlewares/auth.js";
-const router=express.Router()
 
+const router=express.Router()
 
 router.get(`/answers`, GET_ALL_ANSWERS);
 router.put('/answers/:id/reactions', auth, PUT_ANSWER_REACTIONS);

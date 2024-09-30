@@ -1,5 +1,4 @@
 import express from "express";
-
 import {
     GET_ALL_QUESTIONS,
     GET_QUESTIONS_BY_USER,
@@ -9,10 +8,9 @@ import {
     SUBMIT_ANSWER,
     GET_QUESTION_BY_ID,
 } from "../controller/question.js";
-
 import {auth} from "../middlewares/auth.js";
-const router=express.Router()
 
+const router=express.Router()
 
 router.get(`/questions`, GET_ALL_QUESTIONS);
 router.get(`/question/:id`, GET_QUESTION_BY_ID);

@@ -90,17 +90,13 @@ const GET_FILTERED_QUESTIONS= async (req, res)=>{
 const SUBMIT_ANSWER = async (req, res) => {
     try {
         const questionId=req.params.id
-       
         const question = await QuestionModel.findOne({id:questionId });
-
         if (!question) {
             return res.status(404).json({ message: 'The question not exist' });
         }
-
         if (question.answered) {
             return res.status(400).json({ message: 'This question already answered' });
         }
-
         const newAnswer = new AnswerModel({
             answer_text: req.body.answer_text,
             date: req.body.date,
@@ -127,7 +123,4 @@ const SUBMIT_ANSWER = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
-
-
-    
 export {GET_ALL_QUESTIONS, GET_QUESTIONS_BY_USER, POST_QUESTION, DELETE_QUESTION_BY_ID, GET_FILTERED_QUESTIONS, SUBMIT_ANSWER, GET_QUESTION_BY_ID };
